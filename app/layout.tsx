@@ -6,7 +6,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
-import { GoogleClientProvider } from "@/components/GoogleAuthProvider";
 import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
@@ -29,17 +28,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (!process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) {
+    console.error("NEXT_PUBLIC_GOOGLE_CLIENT_ID is not set.");
+    return <div>Google Login not environment variable was not configured.</div>;
+  }
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <GoogleClientProvider>
-          <NavBar />
-          {children}
-          <Toaster position="bottom-center" reverseOrder={false} />
-          <Footer />
-        </GoogleClientProvider>
+        <NavBar />
+        {children}
+        <Toaster position="bottom-center" reverseOrder={false} />
+        <Footer />
       </body>
     </html>
   );
