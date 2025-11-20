@@ -30,7 +30,7 @@ export const Footer = () => {
           <div className="flex flex-col">
             <div className="flex items-center space-x-3 select-none">
               <Image
-                src="/assets/atahgroup-logo.png"
+                src="/assets/logo.png"
                 alt="Atah Group"
                 width={40}
                 height={40}

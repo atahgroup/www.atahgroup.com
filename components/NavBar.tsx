@@ -71,7 +71,7 @@ export const NavBar = () => {
       <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-2">
         <div className="flex items-center select-none space-x-2">
           <Image
-            src="/assets/atahgroup-logo.png"
+            src="/assets/logo.png"
             alt="Atah Group Logo"
             width={40}
             height={40}
