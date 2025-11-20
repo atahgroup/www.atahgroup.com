@@ -4,9 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
-import { useCookies } from "next-client-cookies";
-import { useRouter } from "next/navigation";
-import { GoogleSSO } from "./GoogleSSO";
+import { LoginButton } from "./LoginButton";
 
 const NavBarItem = (props: {
   label: string;
@@ -25,17 +23,6 @@ const NavBarItem = (props: {
 };
 
 export const NavBar = () => {
-  const router = useRouter();
-  const cookies = useCookies();
-
-  const SESSION_ID = cookies.get("SESSION_ID");
-  if (SESSION_ID && SESSION_ID.length > 0) {
-    const protocol = window.location.protocol;
-    const hostname = window.location.hostname;
-    const port = window.location.port;
-    router.push(`${protocol}//one.${hostname}${port ? `:${port}` : ""}/`);
-  }
-
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
@@ -179,7 +166,7 @@ export const NavBar = () => {
         </div>
       </div>
       <div className="mr-2">
-        <GoogleSSO />
+        <LoginButton />
       </div>
     </header>
   );
