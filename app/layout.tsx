@@ -1,6 +1,8 @@
+// @ts-expect-error - allow side-effect global CSS import in Next.js
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 
