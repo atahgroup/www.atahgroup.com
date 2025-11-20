@@ -40,8 +40,8 @@ export const Footer = () => {
               </span>
             </div>
             <p className="mt-3 max-w-md text-sm text-foreground/80 text-justify md:text-left">
-              Small Next.js starter site. Links below are placeholders for legal
-              and social pages.
+              Long live the pursuit of knowledge and innovation. Long live
+              humanity.
             </p>
           </div>
 
@@ -104,9 +104,7 @@ export const Footer = () => {
               Follow
             </h4>
             <div className="mt-2 flex items-center gap-3">
-              <SocialIcon name="github" href="https://github.com/" />
-              <SocialIcon name="twitter" href="https://twitter.com/" />
-              <SocialIcon name="linkedin" href="https://www.linkedin.com/" />
+              <SocialIcon name="github" href="https://github.com/atahgroup" />
             </div>
           </div>
         </div>
