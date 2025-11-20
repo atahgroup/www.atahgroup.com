@@ -2,7 +2,7 @@
 
 import { GoogleCredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export const LoginButton = () => {
   const handleSuccess = (credentialResponse: GoogleCredentialResponse) => {
@@ -45,16 +45,11 @@ export const LoginButton = () => {
   };
 
   return (
-    <>
-      <div>
-        <GoogleLogin
-          onSuccess={handleSuccess}
-          onError={handleError}
-          theme="outline"
-          size="large"
-        />
-      </div>
-      <Toaster position="bottom-center" reverseOrder={false} />
-    </>
+    <GoogleLogin
+      onSuccess={handleSuccess}
+      onError={handleError}
+      theme="outline"
+      size="large"
+    />
   );
 };

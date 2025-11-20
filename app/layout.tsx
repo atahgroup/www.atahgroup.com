@@ -7,6 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 import { GoogleClientProvider } from "@/components/GoogleAuthProvider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
         <GoogleClientProvider>
           <NavBar />
           {children}
+          <Toaster position="bottom-center" reverseOrder={false} />
           <Footer />
         </GoogleClientProvider>
       </body>

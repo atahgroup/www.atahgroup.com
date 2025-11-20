@@ -68,7 +68,7 @@ export const NavBar = () => {
   };
 
   return (
-    <header className="flex flex-row items-center justify-between w-full border-b border-foreground/30 bg-background">
+    <header className="flex flex-row  justify-between w-full border-b border-foreground/30 bg-background">
       <div className="w-full">
         <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-2">
           <div className="flex items-center select-none space-x-2">
@@ -78,13 +78,13 @@ export const NavBar = () => {
               width={40}
               height={40}
             />
-            <span className="font-bold text-2xl text-foreground whitespace-nowrap">
+            <span className="font-bold text-xl md:text-2xl text-foreground whitespace-nowrap">
               Atah Group
             </span>
           </div>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex md:items-center lg:space-x-3">
+          <nav className="hidden lg:flex lg:items-center lg:space-x-3">
             <NavBarItem label="Home" href="/" />
             <NavBarItem label="Services" href="/services" />
             <NavBarItem label="About" href="/about" />
@@ -92,7 +92,7 @@ export const NavBar = () => {
           </nav>
 
           {/* Theme toggle */}
-          <div className="hidden md:flex md:items-center md:ml-2">
+          <div className="hidden lg:flex lg:items-center lg:ml-2">
             <button
               onClick={toggleTheme}
               aria-label={`Switch to ${
@@ -109,7 +109,7 @@ export const NavBar = () => {
           </div>
 
           {/* Mobile hamburger */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               aria-controls="mobile-menu"
               aria-expanded={open}
@@ -130,7 +130,7 @@ export const NavBar = () => {
         {/* Mobile menu panel */}
         <div
           id="mobile-menu"
-          className={`md:hidden transition-max-h duration-300 ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
+          className={`lg:hidden transition-max-h duration-300 ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
             open ? "max-h-screen" : "max-h-0"
           }`}
         >
@@ -165,7 +165,7 @@ export const NavBar = () => {
           </div>
         </div>
       </div>
-      <div className="mr-2">
+      <div className="mt-2 mr-2">
         <LoginButton />
       </div>
     </header>
