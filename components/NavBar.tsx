@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
+import { useCookies } from "next-client-cookies";
+import { useRouter } from "next/navigation";
+import { GoogleSSO } from "./GoogleSSO";
 
 const NavBarItem = (props: {
   label: string;
@@ -22,6 +25,17 @@ const NavBarItem = (props: {
 };
 
 export const NavBar = () => {
+  const router = useRouter();
+  const cookies = useCookies();
+
+  const SESSION_ID = cookies.get("SESSION_ID");
+  if (SESSION_ID && SESSION_ID.length > 0) {
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    router.push(`${protocol}//one.${hostname}${port ? `:${port}` : ""}/`);
+  }
+
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     try {
@@ -67,97 +81,105 @@ export const NavBar = () => {
   };
 
   return (
-    <header className="w-full border-b border-foreground/30 bg-background">
-      <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-2">
-        <div className="flex items-center select-none space-x-2">
-          <Image
-            src="/assets/logo.png"
-            alt="Atah Group Logo"
-            width={40}
-            height={40}
-          />
-          <span className="font-bold text-2xl text-foreground">Atah Group</span>
-        </div>
+    <header className="flex flex-row items-center justify-between w-full border-b border-foreground/30 bg-background">
+      <div className="w-full">
+        <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-2">
+          <div className="flex items-center select-none space-x-2">
+            <Image
+              src="/assets/logo.png"
+              alt="Atah Group Logo"
+              width={40}
+              height={40}
+            />
+            <span className="font-bold text-2xl text-foreground whitespace-nowrap">
+              Atah Group
+            </span>
+          </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex md:items-center lg:space-x-3">
-          <NavBarItem label="Home" href="/" />
-          <NavBarItem label="Services" href="/services" />
-          <NavBarItem label="Research" href="/research" />
-          <NavBarItem label="About" href="/about" />
-          <NavBarItem label="Contact Us" href="/contact" />
-        </nav>
+          {/* Desktop nav */}
+          <nav className="hidden md:flex md:items-center lg:space-x-3">
+            <NavBarItem label="Home" href="/" />
+            <NavBarItem label="Services" href="/services" />
+            <NavBarItem label="About" href="/about" />
+            <NavBarItem label="Contact Us" href="/contact" />
+          </nav>
 
-        {/* Theme toggle */}
-        <div className="hidden md:flex md:items-center md:ml-2">
-          <button
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            className="p-2 rounded-md hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground/30"
-          >
-            {theme === "dark" ? (
-              <FiSun className="h-5 w-5 text-foreground" />
-            ) : (
-              <FiMoon className="h-5 w-5 text-foreground" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile hamburger */}
-        <div className="md:hidden">
-          <button
-            aria-controls="mobile-menu"
-            aria-expanded={open}
-            aria-label="Toggle navigation menu"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground/30"
-          >
-            <span className="sr-only">Open main menu</span>
-            {open ? (
-              <FiX className="h-6 w-6" aria-hidden />
-            ) : (
-              <FiMenu className="h-6 w-6" aria-hidden />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu panel */}
-      <div
-        id="mobile-menu"
-        className={`md:hidden transition-max-h duration-300 ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
-          open ? "max-h-screen" : "max-h-0"
-        }`}
-      >
-        <div className="flex flex-col items-center py-4 space-y-4">
-          {/* Mobile theme toggle */}
-          <div className="flex items-center justify-center w-full">
+          {/* Theme toggle */}
+          <div className="hidden md:flex md:items-center md:ml-2">
             <button
               onClick={toggleTheme}
               aria-label={`Switch to ${
                 theme === "dark" ? "light" : "dark"
               } mode`}
-              className="inline-flex items-center gap-2 px-3 py-2 rounded-md hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground/30"
+              className="p-2 rounded-md hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground/30"
             >
               {theme === "dark" ? (
                 <FiSun className="h-5 w-5 text-foreground" />
               ) : (
                 <FiMoon className="h-5 w-5 text-foreground" />
               )}
-              <span className="text-foreground/90 text-sm">
-                {theme === "dark" ? "Light" : "Dark"} mode
-              </span>
             </button>
           </div>
 
-          <div className="flex flex-col items-center w-full py-2 space-y-2">
-            <NavBarItem label="Home" href="/" onClick={close} />
-            <NavBarItem label="Services" href="/services" onClick={close} />
-            <NavBarItem label="Research" href="/research" onClick={close} />
-            <NavBarItem label="About" href="/about" onClick={close} />
-            <NavBarItem label="Contact Us" href="/contact" onClick={close} />
+          {/* Mobile hamburger */}
+          <div className="md:hidden">
+            <button
+              aria-controls="mobile-menu"
+              aria-expanded={open}
+              aria-label="Toggle navigation menu"
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground/30"
+            >
+              <span className="sr-only">Open main menu</span>
+              {open ? (
+                <FiX className="h-6 w-6" aria-hidden />
+              ) : (
+                <FiMenu className="h-6 w-6" aria-hidden />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile menu panel */}
+        <div
+          id="mobile-menu"
+          className={`md:hidden transition-max-h duration-300 ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
+            open ? "max-h-screen" : "max-h-0"
+          }`}
+        >
+          <div className="flex flex-col items-center py-4 space-y-4">
+            {/* Mobile theme toggle */}
+            <div className="flex items-center justify-center w-full">
+              <button
+                onClick={toggleTheme}
+                aria-label={`Switch to ${
+                  theme === "dark" ? "light" : "dark"
+                } mode`}
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-md hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground/30"
+              >
+                {theme === "dark" ? (
+                  <FiSun className="h-5 w-5 text-foreground" />
+                ) : (
+                  <FiMoon className="h-5 w-5 text-foreground" />
+                )}
+                <span className="text-foreground/90 text-sm">
+                  {theme === "dark" ? "Light" : "Dark"} mode
+                </span>
+              </button>
+            </div>
+
+            <div className="flex flex-col items-center w-full py-2 space-y-2">
+              <NavBarItem label="Home" href="/" onClick={close} />
+              <NavBarItem label="Services" href="/services" onClick={close} />
+              <NavBarItem label="Research" href="/research" onClick={close} />
+              <NavBarItem label="About" href="/about" onClick={close} />
+              <NavBarItem label="Contact Us" href="/contact" onClick={close} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mr-2">
+        <GoogleSSO />
       </div>
     </header>
   );
