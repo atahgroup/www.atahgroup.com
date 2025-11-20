@@ -1,4 +1,5 @@
-// @ts-expect-error - allow side-effect global CSS import in Next.js
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - allow side-effect global CSS import in Next.js
 import "./globals.css";
 
 import type { Metadata } from "next";
