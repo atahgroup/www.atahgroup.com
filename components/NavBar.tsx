@@ -68,7 +68,7 @@ export const NavBar = () => {
   };
 
   return (
-    <header className="flex flex-row  justify-between w-full border-b border-foreground/30 bg-background">
+    <header className="flex flex-row justify-between w-full border-b border-foreground/30 bg-background">
       <div className="w-full">
         <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-2">
           <div className="flex items-center select-none space-x-2">
@@ -79,7 +79,7 @@ export const NavBar = () => {
               height={40}
             />
             <span className="font-bold text-xl md:text-2xl text-foreground whitespace-nowrap">
-              Atah Group
+              Atah
             </span>
           </div>
 
