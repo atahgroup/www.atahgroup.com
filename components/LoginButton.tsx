@@ -14,7 +14,7 @@ export const LoginButton = () => {
       );
       console.log("Decoded User Email:", decoded.email);
 
-      fetch("/api/auth/google", {
+      fetch("https://api.atahgroup.com/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: credentialResponse.credential }),
