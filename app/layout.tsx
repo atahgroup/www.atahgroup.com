@@ -30,7 +30,12 @@ export default function RootLayout({
 }>) {
   if (!process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) {
     console.error("NEXT_PUBLIC_GOOGLE_CLIENT_ID is not set.");
-    return <div>Google Login not environment variable was not configured.</div>;
+    return (
+      <div>
+        Google Login is not configured properly because the environment variable{" "}
+        <code>NEXT_PUBLIC_GOOGLE_CLIENT_ID</code> is missing.
+      </div>
+    );
   }
 
   return (
