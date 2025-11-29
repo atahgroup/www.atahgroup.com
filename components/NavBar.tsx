@@ -86,7 +86,7 @@ export const NavBar = () => {
           {/* Desktop nav */}
           <nav className="hidden lg:flex lg:items-center lg:space-x-3">
             <NavBarItem label="Home" href="/" />
-            <NavBarItem label="Services" href="/services" />
+            <NavBarItem label="Portfolio" href="/portfolio" />
             <NavBarItem label="About" href="/about" />
             <NavBarItem label="Contact Us" href="/contact" />
           </nav>
@@ -157,7 +157,7 @@ export const NavBar = () => {
 
             <div className="flex flex-col items-center w-full py-2 space-y-2">
               <NavBarItem label="Home" href="/" onClick={close} />
-              <NavBarItem label="Services" href="/services" onClick={close} />
+              <NavBarItem label="Portfolio" href="/portfolio" onClick={close} />
               <NavBarItem label="Research" href="/research" onClick={close} />
               <NavBarItem label="About" href="/about" onClick={close} />
               <NavBarItem label="Contact Us" href="/contact" onClick={close} />

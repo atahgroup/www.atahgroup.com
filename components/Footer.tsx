@@ -52,22 +52,22 @@ export const Footer = () => {
               </h4>
               <nav className="mt-2 flex flex-col text-sm text-foreground/90 items-center md:items-start">
                 <Link
+                  href="/portfolio"
+                  className="py-1 hover:underline text-center md:text-left"
+                >
+                  Portfolio
+                </Link>
+                <Link
                   href="/about"
                   className="py-1 hover:underline text-center md:text-left"
                 >
                   About
                 </Link>
                 <Link
-                  href="/services"
+                  href="/contact"
                   className="py-1 hover:underline text-center md:text-left"
                 >
-                  Services
-                </Link>
-                <Link
-                  href="/research"
-                  className="py-1 hover:underline text-center md:text-left"
-                >
-                  Research
+                  Contact
                 </Link>
               </nav>
             </div>
