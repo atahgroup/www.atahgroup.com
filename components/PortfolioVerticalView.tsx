@@ -93,7 +93,7 @@ export default function PortfolioVerticalView({
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-white/10 dark:via-black/20 dark:to-black/40 pointer-events-none" />
       </div>
 
-      <div className="absolute top-3 left-3 right-3 z-40 pointer-events-auto">
+      <div className="absolute top-3 left-3 right-3 sm:left-auto z-40 pointer-events-auto">
         <div className="flex items-center gap-3 bg-background px-3 py-2 rounded-full shadow-sm backdrop-blur-sm border border-foreground/30">
           <div className="flex items-center gap-2">
             <button
