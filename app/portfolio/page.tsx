@@ -1,12 +1,8 @@
+"use client";
+
 import React from "react";
+import PortfolioVerticalView from "../../components/PortfolioVerticalView";
 
 export default function Portfolio() {
-  return (
-    <main className="min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-3xl w-full">
-        <h1 className="text-2xl font-semibold">Portfolio (Placeholder)</h1>
-        <p className="mt-4">This page is a placeholder for Portfolio.</p>
-      </div>
-    </main>
-  );
+  return <PortfolioVerticalView />;
 }
