@@ -69,8 +69,6 @@ export default function Home() {
                 </span>
               </div>
             </div>
-
-            {/* the illustration block was moved above for responsive ordering */}
           </div>
         </section>
       </div>
