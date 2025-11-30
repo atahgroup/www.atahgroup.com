@@ -28,19 +28,7 @@ body {
 
 /* Swarm arrows animation for non-touch devices (keep minimal raw CSS). */
 @media (pointer: fine) {
-  .btn-swarm { position: relative; display: inline-block; }
   .swarm-arrow {
-    position: absolute;
-    width: 1rem;
-    height: 1rem;
-    pointer-events: none;
-    transform-origin: center;
-    opacity: 0;
-    will-change: transform, opacity;
-  }
-
-  /* On hover, arrows run the shared keyframes; per-arrow offsets and rotation are provided via CSS variables set inline. */
-  .btn-swarm:hover .swarm-arrow {
     animation: swarm-move 1000ms cubic-bezier(.2,.85,.25,1) infinite;
   }
 
