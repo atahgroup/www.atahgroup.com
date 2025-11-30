@@ -59,7 +59,6 @@ export default function PortfolioVerticalView({
   const [visibleIds, setVisibleIds] = useState<Record<string, boolean>>({});
   const [density, setDensity] = useState<"low" | "med" | "high">("med");
   const [paused, setPaused] = useState(false);
-  const [disableOnMobile, setDisableOnMobile] = useState(true);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -85,15 +84,10 @@ export default function PortfolioVerticalView({
   return (
     <section className="relative min-h-screen py-16 px-6 md:px-12">
       <div className="absolute inset-0 z-20 pointer-events-none">
-        <ParticleCanvas
-          density={density}
-          paused={paused}
-          disableOnMobile={disableOnMobile}
-        />
+        <ParticleCanvas density={density} paused={paused} />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-white/10 dark:via-black/20 dark:to-black/40 pointer-events-none" />
       </div>
-
-      <div className="absolute top-3 left-3 right-3 sm:left-auto z-40 pointer-events-auto">
+      <div className="hidden md:flex absolute top-6 right-6 z-40 pointer-events-auto">
         <div className="flex items-center gap-3 bg-background px-3 py-2 rounded-full shadow-sm backdrop-blur-sm border border-foreground/30">
           <div className="flex items-center gap-2">
             <button
@@ -135,14 +129,7 @@ export default function PortfolioVerticalView({
           >
             {paused ? "Resume" : "Pause"}
           </button>
-          <label className="ml-2 flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={disableOnMobile}
-              onChange={(e) => setDisableOnMobile(e.target.checked)}
-            />
-            <span className="text-xs">Disable on mobile</span>
-          </label>
+          {/* control panel hidden on mobile; mobile still shows ambient particles on load */}
         </div>
       </div>
 

@@ -17,11 +17,9 @@ type Density = "low" | "med" | "high";
 export default function ParticleCanvas({
   density = "med",
   paused = false,
-  disableOnMobile = true,
 }: {
   density?: Density;
   paused?: boolean;
-  disableOnMobile?: boolean;
 }) {
   const ref = useRef<HTMLCanvasElement | null>(null);
   const particles = useRef<Particle[]>([]);
@@ -64,6 +62,13 @@ export default function ParticleCanvas({
       }
     }
 
+    // detect touch devices (coarse pointer or touch points)
+    const isTouchDevice =
+      (navigator.maxTouchPoints || 0) > 0 ||
+      (typeof window.matchMedia === "function" &&
+        window.matchMedia("(pointer: coarse)").matches) ||
+      "ontouchstart" in window;
+
     function spawnTrail(x: number, y: number, hue = Math.random() * 360) {
       const mult = density === "low" ? 0.6 : density === "high" ? 1.6 : 1;
       const base = Math.max(1, Math.round(3 * mult));
@@ -101,7 +106,6 @@ export default function ParticleCanvas({
     // listen on window so events fire even when the canvas is behind other elements
     const onPointerMove = (e: PointerEvent) => {
       if (paused) return;
-      if (disableOnMobile && (navigator.maxTouchPoints || 0) > 0) return;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -110,20 +114,21 @@ export default function ParticleCanvas({
 
     const onPointerDown = (e: PointerEvent) => {
       if (paused) return;
-      if (disableOnMobile && (navigator.maxTouchPoints || 0) > 0) return;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       spawnFirework(x, y);
     };
 
-    window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("pointerdown", onPointerDown);
+    // only attach continuous pointer/touch handlers for non-touch devices (desktop)
+    if (!isTouchDevice) {
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerdown", onPointerDown);
+    }
 
     // Also support touch in case pointer events are not available
     const touchMoveHandler = (ev: TouchEvent) => {
       if (paused) return;
-      if (disableOnMobile) return;
       ev.preventDefault();
       const t = ev.touches[0];
       const rect = canvas.getBoundingClientRect();
@@ -131,19 +136,20 @@ export default function ParticleCanvas({
     };
     const touchStartHandler = (ev: TouchEvent) => {
       if (paused) return;
-      if (disableOnMobile) return;
       const t = ev.touches[0];
       const rect = canvas.getBoundingClientRect();
       spawnFirework(t.clientX - rect.left, t.clientY - rect.top);
     };
 
-    // attach touch handlers to window as well so interactions over cards still generate particles
-    window.addEventListener(
-      "touchmove",
-      touchMoveHandler as EventListener,
-      { passive: false } as AddEventListenerOptions
-    );
-    window.addEventListener("touchstart", touchStartHandler as EventListener);
+    if (!isTouchDevice) {
+      // attach touch handlers on non-touch devices only (rare but keeps parity with pointer handlers)
+      window.addEventListener(
+        "touchmove",
+        touchMoveHandler as EventListener,
+        { passive: false } as AddEventListenerOptions
+      );
+      window.addEventListener("touchstart", touchStartHandler as EventListener);
+    }
 
     function update() {
       // update particles
@@ -215,19 +221,21 @@ export default function ParticleCanvas({
     return () => {
       if (raf.current) cancelAnimationFrame(raf.current);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerdown", onPointerDown);
-      window.removeEventListener(
-        "touchmove",
-        touchMoveHandler as EventListener
-      );
-      window.removeEventListener(
-        "touchstart",
-        touchStartHandler as EventListener
-      );
+      if (!isTouchDevice) {
+        window.removeEventListener("pointermove", onPointerMove);
+        window.removeEventListener("pointerdown", onPointerDown);
+        window.removeEventListener(
+          "touchmove",
+          touchMoveHandler as EventListener
+        );
+        window.removeEventListener(
+          "touchstart",
+          touchStartHandler as EventListener
+        );
+      }
       window.removeEventListener("firework", fireHandler as EventListener);
     };
-  }, [density, paused, disableOnMobile]);
+  }, [density, paused]);
 
   return (
     <canvas
