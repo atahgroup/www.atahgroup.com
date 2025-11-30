@@ -10,7 +10,7 @@ function cssVars(vars: Record<string, string>): React.CSSProperties {
 function Arrow1() {
   return (
     <span
-      className="swarm-arrow -top-3 -left-3 w-4 h-4 text-pink-500 opacity-0 pointer-events-none"
+      className="swarm-arrow -top-3 -left-3 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
       style={cssVars({
         "--tx": "-20px",
         "--ty": "-20px",
@@ -33,7 +33,7 @@ function Arrow1() {
 function Arrow2() {
   return (
     <span
-      className="swarm-arrow -top-3 -right-2 w-4 h-4 text-amber-500 opacity-0 pointer-events-none"
+      className="swarm-arrow -top-3 -right-2 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
       style={cssVars({
         "--tx": "20px",
         "--ty": "-20px",
@@ -56,7 +56,7 @@ function Arrow2() {
 function Arrow3() {
   return (
     <span
-      className="swarm-arrow top-1/2 -translate-y-1/2 -left-4 w-4 h-4 text-cyan-500 opacity-0 pointer-events-none"
+      className="swarm-arrow top-1/2 -translate-y-1/2 -left-4 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
       style={cssVars({
         "--tx": "-28px",
         "--ty": "0px",
@@ -79,7 +79,7 @@ function Arrow3() {
 function Arrow4() {
   return (
     <span
-      className="swarm-arrow top-1/2 -translate-y-1/2 -right-4 w-4 h-4 text-violet-600 opacity-0 pointer-events-none"
+      className="swarm-arrow top-1/2 -translate-y-1/2 -right-4 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
       style={cssVars({
         "--tx": "28px",
         "--ty": "0px",
@@ -125,7 +125,7 @@ function Arrow5() {
 function Arrow6() {
   return (
     <span
-      className="swarm-arrow -bottom-3 -right-2 w-4 h-4 text-cyan-500 opacity-0 pointer-events-none"
+      className="swarm-arrow -bottom-3 -right-2 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
       style={cssVars({
         "--tx": "18px",
         "--ty": "20px",
@@ -151,9 +151,9 @@ export default function HeroActions() {
       <div className="btn-swarm">
         <Link
           href="/portfolio"
-          className="inline-flex items-center px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-semibold shadow-md transform transition duration-200 ease-out hover:-translate-y-1 hover:scale-105 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300/40"
+          className="inline-flex items-center px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-semibold hover:underline underline-offset-7 shadow-md transform transition duration-200 ease-out hover:-translate-y-1 hover:scale-105 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300/40"
         >
-          View Portfolio
+          🚀 View Portfolio
         </Link>
 
         {/* Swarm arrows - positioned around the CTA and animated on hover (non-touch only via CSS) */}
@@ -167,9 +167,9 @@ export default function HeroActions() {
 
       <Link
         href="/contact"
-        className="inline-flex items-center px-4 py-3 rounded-lg border border-white/20 bg-white/10 text-sm text-gray-800 dark:text-gray-100 transform transition duration-180 ease-out hover:-translate-y-1 hover:shadow-md active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-black/10 dark:focus-visible:ring-white/10"
+        className="inline-flex items-center px-4 py-3 rounded-lg border border-white/20 bg-white/20 text-md font-bold hover:underline underline-offset-7 text-white transform transition duration-180 ease-out hover:-translate-y-1 hover:shadow-md active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-black/10 dark:focus-visible:ring-white/10"
       >
-        Contact
+        👨‍💻 Contact
       </Link>
     </div>
   );
