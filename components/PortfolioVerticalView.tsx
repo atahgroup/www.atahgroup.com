@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import ParticleCanvas from "./ParticleCanvas";
 import PortfolioCard from "./PortfolioCard";
@@ -55,7 +57,20 @@ export default function PortfolioVerticalView({
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [visibleIds, setVisibleIds] = useState<Record<string, boolean>>({});
+  // simple client-side init: default to med, then sync from localStorage asynchronously
   const [density, setDensity] = useState<"low" | "med" | "high">("med");
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("particleDensity");
+      if (stored === "low" || stored === "med" || stored === "high") {
+        // update asynchronously to avoid cascading render warnings
+        requestAnimationFrame(() => setDensity(stored));
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
@@ -79,6 +94,15 @@ export default function PortfolioVerticalView({
     return () => observer.disconnect();
   }, []);
 
+  // persist density selection
+  useEffect(() => {
+    try {
+      localStorage.setItem("particleDensity", density);
+    } catch {
+      // ignore write errors
+    }
+  }, [density]);
+
   return (
     <section className="relative min-h-screen py-16 px-6 md:px-12">
       <div className="absolute inset-0 z-20 pointer-events-none">
@@ -89,6 +113,7 @@ export default function PortfolioVerticalView({
         <div className="flex items-center gap-3 bg-background px-3 py-2 rounded-full shadow-sm backdrop-blur-sm border border-foreground/30">
           <div className="flex items-center gap-2">
             <button
+              aria-pressed={density === "low"}
               className={`px-2 py-1 rounded-md text-sm ${
                 density === "low"
                   ? "bg-indigo-600 text-white"
@@ -99,6 +124,7 @@ export default function PortfolioVerticalView({
               Low
             </button>
             <button
+              aria-pressed={density === "med"}
               className={`px-2 py-1 rounded-md text-sm ${
                 density === "med"
                   ? "bg-indigo-600 text-white"
@@ -109,6 +135,7 @@ export default function PortfolioVerticalView({
               Med
             </button>
             <button
+              aria-pressed={density === "high"}
               className={`px-2 py-1 rounded-md text-sm ${
                 density === "high"
                   ? "bg-indigo-600 text-white"
