@@ -1,12 +1,10 @@
 import React from "react";
+import { PRIVACY_POLICY_HTML } from "./privacy-policy";
 
 export default function Privacy() {
   return (
-    <main className="min-h-screen flex items-center justify-center p-8">
-      <div className="max-w-3xl w-full">
-        <h1 className="text-2xl font-semibold">Privacy Policy (Placeholder)</h1>
-        <p className="mt-4">This page is a placeholder for Privacy Policy.</p>
-      </div>
-    </main>
+    <div className="flex flex-col gap-6 max-w-3xl mx-auto p-6 md:p-12">
+      <div dangerouslySetInnerHTML={{ __html: PRIVACY_POLICY_HTML }} />
+    </div>
   );
 }
