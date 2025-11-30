@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  /* More vivid, colorful background in light mode — used as `background` on body */
+  --background: linear-gradient(135deg,#fff0f6 0%,#ffedd5 40%,#e0f2fe 100%);
   --foreground: #171717;
 }
 
