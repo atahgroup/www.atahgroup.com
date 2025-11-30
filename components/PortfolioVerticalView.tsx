@@ -3,52 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ParticleCanvas from "./ParticleCanvas";
 import PortfolioCard from "./PortfolioCard";
-
-type Project = {
-  id: string;
-  title: string;
-  summary: string;
-  date: string;
-  image?: string;
-  tags?: string[];
-  link?: string;
-};
-
-const SAMPLE_PROJECTS: Project[] = [
-  {
-    id: "p1",
-    title: "AtahGroup Website",
-    summary: "A modern responsive website focused on style and accessibility.",
-    date: "2025-11-20",
-    image: "/assets/placeholder-1.jpg",
-    tags: ["Next.js", "Tailwind", "Accessibility"],
-    link: "/",
-  },
-  {
-    id: "p3",
-    title: "Nitrate Language Compiler",
-    summary: "A fast, safe, and modern applications programming language.",
-    date: "2024-02-15",
-    image: "/assets/placeholder-1.jpg",
-    tags: [
-      "Rust",
-      "Compiler Development",
-      "Language Design",
-      "LLVM",
-      "Performance",
-    ],
-    link: "https://github.com/nitrate-lang/nitrate",
-  },
-  {
-    id: "p2",
-    title: "MyNote App",
-    summary: "A free note taking service with particle effects and style.",
-    date: "2025-11-29",
-    image: "/assets/placeholder-1.jpg",
-    tags: ["Postgres", "Google APIs", "Tailwind", "Animations"],
-    link: "/portfolio/mynote",
-  },
-];
+import { Project, SAMPLE_PROJECTS } from "@/constants/portfolio-projects";
 
 export default function PortfolioVerticalView({
   projects = SAMPLE_PROJECTS,
@@ -57,9 +12,6 @@ export default function PortfolioVerticalView({
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [visibleIds, setVisibleIds] = useState<Record<string, boolean>>({});
-  // simple client-side init: default to med, then sync from localStorage asynchronously
-  // particles run in high density by default (no density controls)
-  // particles always active by default (no `paused` state)
 
   useEffect(() => {
     const el = containerRef.current;
@@ -81,8 +33,6 @@ export default function PortfolioVerticalView({
 
     return () => observer.disconnect();
   }, []);
-
-  // no density persistence (particles fixed to high)
 
   return (
     <section className="relative min-h-screen py-16 px-6 md:px-12">
