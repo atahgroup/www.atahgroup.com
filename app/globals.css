@@ -27,7 +27,6 @@ body {
 }
 
 /* Swarm arrows animation for non-touch devices (keep minimal raw CSS). */
-@media (pointer: fine) {
   .swarm-arrow {
     animation: swarm-move 1000ms cubic-bezier(.2,.85,.25,1) infinite;
   }
@@ -40,4 +39,3 @@ body {
     80% { opacity: 0.8; }
     100% { transform: translate(var(--tx, 0px), var(--ty, 0px)) rotate(var(--rot-start, 0deg)) scale(1); opacity: 0; }
   }
-}
