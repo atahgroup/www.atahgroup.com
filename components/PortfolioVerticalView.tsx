@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import ParticleCanvas from "./ParticleCanvas";
 import PortfolioCard from "./PortfolioCard";

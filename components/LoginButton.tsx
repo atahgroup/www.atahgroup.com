@@ -1,5 +1,3 @@
-"use client";
-
 export const LoginButton = () => {
   const login = () => {
     const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
