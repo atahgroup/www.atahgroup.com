@@ -58,20 +58,8 @@ export default function PortfolioVerticalView({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [visibleIds, setVisibleIds] = useState<Record<string, boolean>>({});
   // simple client-side init: default to med, then sync from localStorage asynchronously
-  const [density, setDensity] = useState<"low" | "med" | "high">("med");
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("particleDensity");
-      if (stored === "low" || stored === "med" || stored === "high") {
-        // update asynchronously to avoid cascading render warnings
-        requestAnimationFrame(() => setDensity(stored));
-      }
-    } catch {
-      // ignore
-    }
-  }, []);
-  const [paused, setPaused] = useState(false);
+  // particles run in high density by default (no density controls)
+  // particles always active by default (no `paused` state)
 
   useEffect(() => {
     const el = containerRef.current;
@@ -94,68 +82,13 @@ export default function PortfolioVerticalView({
     return () => observer.disconnect();
   }, []);
 
-  // persist density selection
-  useEffect(() => {
-    try {
-      localStorage.setItem("particleDensity", density);
-    } catch {
-      // ignore write errors
-    }
-  }, [density]);
+  // no density persistence (particles fixed to high)
 
   return (
     <section className="relative min-h-screen py-16 px-6 md:px-12">
       <div className="absolute inset-0 z-20 pointer-events-none">
-        <ParticleCanvas density={density} paused={paused} />
+        <ParticleCanvas />
         <div className="absolute inset-0 pointer-events-none" />
-      </div>
-      <div className="hidden md:flex absolute top-6 right-6 z-40 pointer-events-auto">
-        <div className="flex items-center gap-3 bg-background px-3 py-2 rounded-full shadow-sm backdrop-blur-sm border border-foreground/30">
-          <div className="flex items-center gap-2">
-            <button
-              aria-pressed={density === "low"}
-              className={`px-2 py-1 rounded-md text-sm ${
-                density === "low"
-                  ? "bg-indigo-600 text-white"
-                  : "text-foreground"
-              }`}
-              onClick={() => setDensity("low")}
-            >
-              Low
-            </button>
-            <button
-              aria-pressed={density === "med"}
-              className={`px-2 py-1 rounded-md text-sm ${
-                density === "med"
-                  ? "bg-indigo-600 text-white"
-                  : "text-foreground"
-              }`}
-              onClick={() => setDensity("med")}
-            >
-              Med
-            </button>
-            <button
-              aria-pressed={density === "high"}
-              className={`px-2 py-1 rounded-md text-sm ${
-                density === "high"
-                  ? "bg-indigo-600 text-white"
-                  : "text-foreground"
-              }`}
-              onClick={() => setDensity("high")}
-            >
-              High
-            </button>
-          </div>
-          <button
-            onClick={() => setPaused((s) => !s)}
-            className={`ml-2 px-2 py-1 rounded-md text-sm ${
-              paused ? "bg-red-500 text-white" : "bg-green-500 text-white"
-            }`}
-          >
-            {paused ? "Resume" : "Pause"}
-          </button>
-          {/* control panel hidden on mobile; mobile still shows ambient particles on load */}
-        </div>
       </div>
 
       <div className="max-w-4xl mx-auto">

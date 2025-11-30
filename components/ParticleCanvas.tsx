@@ -12,13 +12,108 @@ type Particle = {
   hue: number;
 };
 
-type Density = "low" | "med" | "high";
+type Bounds = { w: number; h: number };
 
+// Helper: produce a small batch of trail particles (does not mutate external state)
+export function spawnTrailParticles(
+  x: number,
+  y: number,
+  hue = Math.random() * 360,
+  base = 5
+): Particle[] {
+  const out: Particle[] = [];
+  for (let i = 0; i < base; i++) {
+    out.push({
+      x,
+      y,
+      vx: (Math.random() - 0.5) * 1.4,
+      vy: (Math.random() - 0.5) * 1.4 - 0.5,
+      life: 40 + Math.random() * 30,
+      size: 1 + Math.random() * 3,
+      hue,
+    });
+  }
+  return out;
+}
+
+// Helper: produce a firework burst (does not mutate external state)
+export function spawnFireworkParticles(
+  x: number,
+  y: number,
+  hue = Math.random() * 360,
+  mult = 1.6
+): Particle[] {
+  const out: Particle[] = [];
+  const count = Math.max(12, Math.floor((30 + Math.random() * 40) * mult));
+  for (let i = 0; i < count; i++) {
+    const angle = (Math.PI * 2 * i) / count;
+    const speed = 1 + Math.random() * 4;
+    out.push({
+      x,
+      y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 40 + Math.random() * 60,
+      size: 1 + Math.random() * 3,
+      hue: hue + (Math.random() - 0.5) * 40,
+    });
+  }
+  return out;
+}
+
+// Update particle physics and return a new array with expired/out-of-bounds filtered
+export function updateParticles(
+  particles: Particle[],
+  bounds: Bounds,
+  gravity = 0.02,
+  drag = 0.99
+): Particle[] {
+  const next: Particle[] = [];
+  const { w, h } = bounds;
+  for (let i = 0; i < particles.length; i++) {
+    const p = { ...particles[i] };
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += gravity;
+    p.life -= 1;
+    p.vx *= drag;
+    p.vy *= drag;
+    if (p.life > 0 && p.x >= -50 && p.x <= w + 50 && p.y <= h + 200) {
+      next.push(p);
+    }
+  }
+  return next;
+}
+
+// Draw particles using an explicit context and parameters (no captured state)
+export function drawParticles(
+  ctx: CanvasRenderingContext2D,
+  particles: Particle[],
+  bounds: Bounds,
+  prefersDark: boolean
+) {
+  const { w, h } = bounds;
+  ctx.clearRect(0, 0, w, h);
+  for (const p of particles) {
+    const alpha = Math.max(0, Math.min(1, p.life / 80));
+    ctx.beginPath();
+    const lightness = prefersDark ? 60 : 45;
+    const saturation = prefersDark ? 90 : 75;
+    ctx.fillStyle = `hsla(${p.hue}, ${saturation}%, ${lightness}%, ${alpha})`;
+    ctx.globalCompositeOperation = "lighter";
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalCompositeOperation = "source-over";
+}
+
+// ParticleCanvas: renders decorative particle trails and fireworks.
+// - Runs entirely client-side and scales for DPR.
+// - `paused` disables updates when true.
+// Note: density has been removed; this canvas always runs in 'high' mode.
 export default function ParticleCanvas({
-  density = "med",
   paused = false,
 }: {
-  density?: Density;
   paused?: boolean;
 }) {
   const ref = useRef<HTMLCanvasElement | null>(null);
@@ -69,38 +164,17 @@ export default function ParticleCanvas({
         window.matchMedia("(pointer: coarse)").matches) ||
       "ontouchstart" in window;
 
+    // Small wrappers that call the extracted helpers and minimize captured state
     function spawnTrail(x: number, y: number, hue = Math.random() * 360) {
-      const mult = density === "low" ? 0.6 : density === "high" ? 1.6 : 1;
-      const base = Math.max(1, Math.round(3 * mult));
-      for (let i = 0; i < base; i++) {
-        particles.current.push({
-          x,
-          y,
-          vx: (Math.random() - 0.5) * 1.4,
-          vy: (Math.random() - 0.5) * 1.4 - 0.5,
-          life: 40 + Math.random() * 30,
-          size: 1 + Math.random() * 3,
-          hue,
-        });
-      }
+      particles.current = particles.current.concat(
+        spawnTrailParticles(x, y, hue)
+      );
     }
 
     function spawnFirework(x: number, y: number, hue = Math.random() * 360) {
-      const mult = density === "low" ? 0.6 : density === "high" ? 1.6 : 1;
-      const count = Math.max(12, Math.floor((30 + Math.random() * 40) * mult));
-      for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count;
-        const speed = 1 + Math.random() * 4;
-        particles.current.push({
-          x,
-          y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          life: 40 + Math.random() * 60,
-          size: 1 + Math.random() * 3,
-          hue: hue + (Math.random() - 0.5) * 40,
-        });
-      }
+      particles.current = particles.current.concat(
+        spawnFireworkParticles(x, y, hue)
+      );
     }
 
     // listen on window so events fire even when the canvas is behind other elements
@@ -152,36 +226,11 @@ export default function ParticleCanvas({
     }
 
     function update() {
-      // update particles
-      for (let i = particles.current.length - 1; i >= 0; i--) {
-        const p = particles.current[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.02; // gravity
-        p.life -= 1;
-        p.vx *= 0.99;
-        p.vy *= 0.99;
-        if (p.life <= 0 || p.x < -50 || p.x > w + 50 || p.y > h + 200) {
-          particles.current.splice(i, 1);
-        }
-      }
+      particles.current = updateParticles(particles.current, { w, h });
     }
 
     function draw() {
-      ctx.clearRect(0, 0, w, h);
-
-      for (const p of particles.current) {
-        const alpha = Math.max(0, Math.min(1, p.life / 80));
-        ctx.beginPath();
-        // adjust lightness for dark vs light theme so particles remain visible
-        const lightness = prefersDark ? 60 : 45;
-        const saturation = prefersDark ? 90 : 75;
-        ctx.fillStyle = `hsla(${p.hue}, ${saturation}%, ${lightness}%, ${alpha})`;
-        ctx.globalCompositeOperation = "lighter";
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.globalCompositeOperation = "source-over";
+      drawParticles(ctx, particles.current, { w, h }, prefersDark);
     }
 
     function loop() {
@@ -190,13 +239,15 @@ export default function ParticleCanvas({
       raf.current = requestAnimationFrame(loop);
     }
 
-    // spawn a few ambient particles so the canvas isn't empty on first load
+    // ambient burst on load (kept for all devices). Use high-density ambient.
     if (!paused) {
-      const ambient = density === "low" ? 6 : density === "high" ? 20 : 12;
+      const ambient = 20;
       for (let i = 0; i < ambient; i++) {
-        spawnTrail(
-          Math.random() * (canvas.clientWidth || 800),
-          Math.random() * (canvas.clientHeight || 600)
+        particles.current = particles.current.concat(
+          spawnTrailParticles(
+            Math.random() * (canvas.clientWidth || 800),
+            Math.random() * (canvas.clientHeight || 600)
+          )
         );
       }
     }
@@ -212,7 +263,9 @@ export default function ParticleCanvas({
         x = ce.detail.x - rect.left;
         y = ce.detail.y - rect.top;
       }
-      spawnFirework(x, y);
+      particles.current = particles.current.concat(
+        spawnFireworkParticles(x, y)
+      );
     };
     window.addEventListener("firework", fireHandler as EventListener);
 
@@ -235,7 +288,7 @@ export default function ParticleCanvas({
       }
       window.removeEventListener("firework", fireHandler as EventListener);
     };
-  }, [density, paused]);
+  }, [paused]);
 
   return (
     <canvas
