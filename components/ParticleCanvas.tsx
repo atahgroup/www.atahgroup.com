@@ -119,6 +119,7 @@ export default function ParticleCanvas({
   const ref = useRef<HTMLCanvasElement | null>(null);
   const particles = useRef<Particle[]>([]);
   const raf = useRef<number | null>(null);
+  const MAX_PARTICLES = 800;
 
   useEffect(() => {
     const canvas = ref.current!;
@@ -129,8 +130,12 @@ export default function ParticleCanvas({
       h = 0;
     function resize() {
       const dpr = Math.max(1, window.devicePixelRatio || 1);
-      w = canvas.clientWidth;
-      h = canvas.clientHeight;
+      // Use viewport size so canvas stays performant on tall pages
+      w = window.innerWidth;
+      h = window.innerHeight;
+      // Ensure CSS size matches viewport to avoid stretching
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -194,13 +199,7 @@ export default function ParticleCanvas({
       spawnFirework(x, y);
     };
 
-    // only attach continuous pointer/touch handlers for non-touch devices (desktop)
-    if (!isTouchDevice) {
-      window.addEventListener("pointermove", onPointerMove);
-      window.addEventListener("pointerdown", onPointerDown);
-    }
-
-    // Also support touch in case pointer events are not available
+    // touch handlers
     const touchMoveHandler = (ev: TouchEvent) => {
       if (paused) return;
       ev.preventDefault();
@@ -216,7 +215,9 @@ export default function ParticleCanvas({
     };
 
     if (!isTouchDevice) {
-      // attach touch handlers on non-touch devices only (rare but keeps parity with pointer handlers)
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerdown", onPointerDown);
+    } else {
       window.addEventListener(
         "touchmove",
         touchMoveHandler as EventListener,
@@ -239,16 +240,17 @@ export default function ParticleCanvas({
       raf.current = requestAnimationFrame(loop);
     }
 
-    // ambient burst on load (kept for all devices). Use high-density ambient.
+    // ambient burst on load (kept for all devices). Use viewport-based ambient.
     if (!paused) {
-      const ambient = 20;
+      const area = Math.max(1, w * h);
+      const ambient = Math.min(30, Math.floor(area / 200000));
       for (let i = 0; i < ambient; i++) {
         particles.current = particles.current.concat(
-          spawnTrailParticles(
-            Math.random() * (canvas.clientWidth || 800),
-            Math.random() * (canvas.clientHeight || 600)
-          )
+          spawnTrailParticles(Math.random() * w, Math.random() * h)
         );
+      }
+      if (particles.current.length > MAX_PARTICLES) {
+        particles.current = particles.current.slice(-MAX_PARTICLES);
       }
     }
 
@@ -266,6 +268,9 @@ export default function ParticleCanvas({
       particles.current = particles.current.concat(
         spawnFireworkParticles(x, y)
       );
+      if (particles.current.length > MAX_PARTICLES) {
+        particles.current = particles.current.slice(-MAX_PARTICLES);
+      }
     };
     window.addEventListener("firework", fireHandler as EventListener);
 
@@ -277,6 +282,7 @@ export default function ParticleCanvas({
       if (!isTouchDevice) {
         window.removeEventListener("pointermove", onPointerMove);
         window.removeEventListener("pointerdown", onPointerDown);
+      } else {
         window.removeEventListener(
           "touchmove",
           touchMoveHandler as EventListener
@@ -293,7 +299,7 @@ export default function ParticleCanvas({
   return (
     <canvas
       ref={ref}
-      className="absolute inset-0 w-full h-full pointer-events-none z-30"
+      className="fixed inset-0 pointer-events-none z-30"
       style={{ touchAction: "none" }}
       aria-hidden
     />
