@@ -28,7 +28,7 @@ export default function Home() {
             </div>
 
             <div className="flex-1">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
                 Software developer & UI-minded engineer
               </h1>
 
