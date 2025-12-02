@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import ParticleCanvas from "./ParticleCanvas";
 import PortfolioCard from "./PortfolioCard";
 import { Project, SAMPLE_PROJECTS } from "@/constants/portfolio-projects";
 
@@ -36,10 +35,7 @@ export default function PortfolioVerticalView({
 
   return (
     <section className="relative min-h-screen py-16 px-6 md:px-12">
-      <div className="absolute inset-0 z-20 pointer-events-none">
-        <ParticleCanvas />
-        <div className="absolute inset-0 pointer-events-none" />
-      </div>
+      {/* Decorative canvas moved to global layout for site-wide coverage */}
 
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
