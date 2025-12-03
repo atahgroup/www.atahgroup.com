@@ -182,9 +182,21 @@ export default function ParticleCanvas({
       );
     }
 
-    // listen on window so events fire even when the canvas is behind other elements
+    // helper: ignore events that originate from interactive elements so navigation
+    // and UI controls continue to behave normally when the user clicks/touches
+    function isEventOnInteractive(target: EventTarget | null) {
+      if (!(target instanceof Element)) return false;
+      return !!target.closest(
+        'a, button, input, textarea, select, summary, label, [role="button"], [role="link"], nav, header'
+      );
+    }
+
+    // listen on window so events fire even when the canvas is behind other elements.
+    // However, ignore events that start on interactive elements so we don't interfere
+    // with navigation or UI interactions.
     const onPointerMove = (e: PointerEvent) => {
       if (paused) return;
+      if (isEventOnInteractive(e.target)) return;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -193,6 +205,7 @@ export default function ParticleCanvas({
 
     const onPointerDown = (e: PointerEvent) => {
       if (paused) return;
+      if (isEventOnInteractive(e.target)) return;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -202,14 +215,18 @@ export default function ParticleCanvas({
     // touch handlers
     const touchMoveHandler = (ev: TouchEvent) => {
       if (paused) return;
-      ev.preventDefault();
       const t = ev.touches[0];
+      if (!t) return;
+      // If the original touch start was on an interactive element, ignore it.
+      if (isEventOnInteractive(ev.target)) return;
       const rect = canvas.getBoundingClientRect();
       spawnTrail(t.clientX - rect.left, t.clientY - rect.top);
     };
     const touchStartHandler = (ev: TouchEvent) => {
       if (paused) return;
       const t = ev.touches[0];
+      if (!t) return;
+      if (isEventOnInteractive(ev.target)) return;
       const rect = canvas.getBoundingClientRect();
       spawnFirework(t.clientX - rect.left, t.clientY - rect.top);
     };
@@ -299,6 +316,7 @@ export default function ParticleCanvas({
   return (
     <canvas
       ref={ref}
+      // keep the canvas visually behind UI and allow clicks to pass through
       className="fixed inset-0 pointer-events-none z-30"
       style={{ touchAction: "none" }}
       aria-hidden
