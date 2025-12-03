@@ -68,7 +68,7 @@ export const NavBar = () => {
   };
 
   return (
-    <header className="flex flex-row justify-between w-full border-b border-foreground/30 bg-background">
+    <header className="flex justify-between w-full border-b border-foreground/30 bg-background">
       <div className="w-full">
         <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-2">
           <div className="flex items-center select-none space-x-2">
@@ -82,7 +82,6 @@ export const NavBar = () => {
               Atah
             </span>
           </div>
-
           {/* Desktop nav */}
           <nav className="hidden lg:flex lg:items-center lg:space-x-3">
             <NavBarItem label="Home" href="/" />
@@ -90,7 +89,6 @@ export const NavBar = () => {
             <NavBarItem label="About" href="/about" />
             <NavBarItem label="Contact Us" href="/contact" />
           </nav>
-
           {/* Theme toggle */}
           <div className="hidden lg:flex lg:items-center lg:ml-2">
             <button
@@ -106,6 +104,10 @@ export const NavBar = () => {
                 <FiMoon className="h-5 w-5 text-foreground" />
               )}
             </button>
+          </div>
+
+          <div className="flex justify-end w-full lg:w-auto mr-2">
+            <LoginButton />
           </div>
 
           {/* Mobile hamburger */}
@@ -163,9 +165,6 @@ export const NavBar = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="mt-2 mr-2">
-        <LoginButton />
       </div>
     </header>
   );
