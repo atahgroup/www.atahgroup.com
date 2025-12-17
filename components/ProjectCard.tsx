@@ -67,7 +67,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               href={project.link ?? "#"}
               className="inline-block px-4 py-2 rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm shadow-sm transition-opacity opacity-95 hover:opacity-100"
             >
-              Visit Project
+              See Project
             </a>
           </div>
         </div>

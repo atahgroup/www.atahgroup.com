@@ -11,7 +11,7 @@ export type Project = {
 export const PROJECTS_LIST: Project[] = [
   {
     id: "p1",
-    title: "Nitrate Language Compiler",
+    title: "Nitrate Programming Language",
     summary: "A fast, safe, and modern applications programming language.",
     date: "2024-02-15",
     image: "/assets/placeholder-1.jpg",
