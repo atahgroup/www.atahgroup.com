@@ -40,8 +40,7 @@ export default function Projects() {
           Projects
         </h1>
         <p className="text-foreground mb-8">
-          Selected projects and prototypes — interactive demo with particle
-          effects. Try moving your cursor or tapping.
+          Featured below are some of our most notable projects.
         </p>
 
         <div ref={containerRef} className="flex flex-col gap-6">
