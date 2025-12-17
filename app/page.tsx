@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import HeroIllustration from "../components/HeroIllustration";
 import HeroActions from "../components/HeroActions";
