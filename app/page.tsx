@@ -8,10 +8,6 @@ export default function Home() {
   return (
     <main className="min-h-screen flex items-center justify-center p-8">
       <div className="relative w-full max-w-5xl">
-        {/* Decorative blurred gradient behind the glass panel.
-            - show a vivid colorful gradient in light mode
-            - keep the softer/muted gradient in dark mode (preserves current look)
-        */}
         <div
           aria-hidden
           className="absolute -inset-8 rounded-3xl blur-3xl transform-gpu"
@@ -21,7 +17,6 @@ export default function Home() {
 
         <section className="relative rounded-3xl bg-gradient-to-br from-indigo-400/80 via-sky-300/80 to-emerald-300/80 shadow-2xl p-10 md:p-12">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            {/* Illustration appears first on small screens, last on md+ */}
             <div className="order-first md:order-last w-full md:w-80 lg:w-96 h-44 md:h-56 rounded-xl overflow-hidden flex items-center justify-center bg-gradient-to-br from-pink-200/60 dark:from-white/70 to-transparent border border-white/10">
               <HeroIllustration className="w-3/4 h-3/4" />
             </div>
@@ -39,8 +34,6 @@ export default function Home() {
               </p>
 
               <HeroActions />
-
-              {/* <SkillTagPills /> */}
             </div>
           </div>
         </section>
