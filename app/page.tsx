@@ -3,7 +3,6 @@
 import React from "react";
 import HeroIllustration from "../components/HeroIllustration";
 import HeroActions from "../components/HeroActions";
-import SkillTagPills from "../components/SkillTagPills";
 
 export default function Home() {
   return (
@@ -29,18 +28,19 @@ export default function Home() {
 
             <div className="flex-1">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
-                Software developer & UI-minded engineer
+                Hi, I&apos;m Wesley Jones. I build software products and fun
+                machines.
               </h1>
 
               <p className="mt-4 text-lg text-white max-w-2xl">
-                I build <b>thoughtful</b>, <b>performant</b> web experiences —
-                focusing on clear UX, <b>accessible</b> components, and
-                pragmatic engineering using React, Next.js and TypeScript.
+                I&apos;m a software engineer with a passion for low-level
+                programming. Welcome to my corner of the internet where I share
+                my projects, ideas, and experiences.
               </p>
 
               <HeroActions />
 
-              <SkillTagPills />
+              {/* <SkillTagPills /> */}
             </div>
           </div>
         </section>
