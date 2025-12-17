@@ -8,7 +8,7 @@ export type Project = {
   link?: string;
 };
 
-export const SAMPLE_PROJECTS: Project[] = [
+export const PROJECTS_LIST: Project[] = [
   {
     id: "p1",
     title: "Nitrate Language Compiler",

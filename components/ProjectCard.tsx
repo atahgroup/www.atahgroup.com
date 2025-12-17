@@ -11,7 +11,7 @@ type Project = {
   link?: string;
 };
 
-export default function PortfolioCard({ project }: { project: Project }) {
+export default function ProjectCard({ project }: { project: Project }) {
   function handleClick(e: React.MouseEvent<HTMLElement>) {
     // dispatch a small firework at the click position so other components can listen
     const x = e.clientX || window.innerWidth / 2;
@@ -67,7 +67,7 @@ export default function PortfolioCard({ project }: { project: Project }) {
               href={project.link ?? "#"}
               className="inline-block px-4 py-2 rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm shadow-sm transition-opacity opacity-95 hover:opacity-100"
             >
-              View Project
+              Visit Project
             </a>
           </div>
         </div>

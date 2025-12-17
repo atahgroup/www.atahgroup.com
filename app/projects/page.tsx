@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import PortfolioCard from "./PortfolioCard";
-import { Project, SAMPLE_PROJECTS } from "@/constants/portfolio-projects";
+import ProjectCard from "../../components/ProjectCard";
+import { Project, PROJECTS_LIST } from "@/constants/projects";
 
-export default function PortfolioVerticalView({
-  projects = SAMPLE_PROJECTS,
-}: {
-  projects?: Project[];
-}) {
+export default function Projects() {
+  const projects: Project[] = PROJECTS_LIST;
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [visibleIds, setVisibleIds] = useState<Record<string, boolean>>({});
 
@@ -39,7 +37,7 @@ export default function PortfolioVerticalView({
 
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-          Portfolio
+          Projects
         </h1>
         <p className="text-foreground mb-8">
           Selected projects and prototypes — interactive demo with particle
@@ -57,7 +55,7 @@ export default function PortfolioVerticalView({
                   : "opacity-0 translate-y-6"
               }`}
             >
-              <PortfolioCard project={p} />
+              <ProjectCard project={p} />
             </div>
           ))}
         </div>

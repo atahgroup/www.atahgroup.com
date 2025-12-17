@@ -108,10 +108,10 @@ export default function HeroActions() {
     <div className="mt-6 flex flex-wrap gap-3 items-center">
       <div className="relative inline-block">
         <Link
-          href="/portfolio"
+          href="/projects"
           className="inline-flex items-center px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-semibold hover:underline underline-offset-7 shadow-md transform transition duration-200 ease-out hover:-translate-y-1 hover:scale-105 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300/40"
         >
-          🚀 View Portfolio
+          🚀 See Projects
         </Link>
 
         <TopLeftArrow />
