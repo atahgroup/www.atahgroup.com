@@ -54,7 +54,9 @@ const CompanyIntro = () => {
           </a>
         </div>
       </div>
-      <RainboxGradientBorderButton onClick={() => alert()}>
+      <RainboxGradientBorderButton
+        onClick={() => alert("Not implemented yet!")}
+      >
         <b>GET A MACHINE</b>
       </RainboxGradientBorderButton>
     </div>
@@ -76,10 +78,10 @@ const FAQItem = ({
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between items-center w-full text-left group"
       >
-        <h3 className="text-xl font-semibold group-hover:text-indigo-600 transition-colors">
+        <h3 className="text-xl font-semibold group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
           {question}
         </h3>
-        <span className="text-2xl font-light transition-all duration-200">
+        <span className="text-2xl font-light group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-all duration-200">
           {isOpen ? "-" : "+"}
         </span>
       </button>
