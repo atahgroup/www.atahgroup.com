@@ -1,24 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
-
-const SocialIcon = ({ name, href }: { name: string; href: string }) => {
-  const common = "h-5 w-5";
-  const Icon =
-    name === "github" ? FaGithub : name === "twitter" ? FaTwitter : FaLinkedin;
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={name}
-      className="text-foreground/90 hover:text-foreground transition-colors"
-    >
-      <Icon className={common} />
-    </a>
-  );
-};
 
 export const Footer = () => {
   return (
@@ -38,8 +20,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="mt-3 max-w-md text-sm text-foreground/80 text-justify md:text-left">
-              Long live the pursuit of knowledge and innovation. Long live
-              humanity.
+              Long live humanity.
             </p>
           </div>
 
@@ -88,15 +69,6 @@ export const Footer = () => {
                   Cookie Policy
                 </Link>
               </nav>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center md:items-start">
-            <h4 className="font-semibold text-foreground text-center md:text-left">
-              Follow
-            </h4>
-            <div className="mt-2 flex items-center gap-3">
-              <SocialIcon name="github" href="https://github.com/atahgroup" />
             </div>
           </div>
         </div>
