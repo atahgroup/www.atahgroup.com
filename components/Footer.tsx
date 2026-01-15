@@ -50,12 +50,6 @@ export const Footer = () => {
               </h4>
               <nav className="mt-2 flex flex-col text-sm text-foreground/90 items-center md:items-start">
                 <Link
-                  href="/projects"
-                  className="py-1 hover:underline text-center md:text-left"
-                >
-                  Projects
-                </Link>
-                <Link
                   href="/about"
                   className="py-1 hover:underline text-center md:text-left"
                 >

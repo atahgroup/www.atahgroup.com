@@ -7,7 +7,7 @@ function cssVars(vars: Record<string, string>): React.CSSProperties {
   ) as unknown as React.CSSProperties;
 }
 
-function TopLeftArrow() {
+function TopLeftArrow({ emoji }: { emoji: string }) {
   return (
     <span
       className="swarm-arrow absolute -top-3 -left-3 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
@@ -18,12 +18,12 @@ function TopLeftArrow() {
         "--rot-mid": "90deg",
       })}
     >
-      💸
+      {emoji}
     </span>
   );
 }
 
-function TopRightArrow() {
+function TopRightArrow({ emoji }: { emoji: string }) {
   return (
     <span
       className="swarm-arrow absolute -top-3 -right-2 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
@@ -34,12 +34,12 @@ function TopRightArrow() {
         "--rot-mid": "180deg",
       })}
     >
-      💸
+      {emoji}
     </span>
   );
 }
 
-function MidRightArrow() {
+function MidRightArrow({ emoji }: { emoji: string }) {
   return (
     <span
       className="swarm-arrow absolute top-1/2 -translate-y-1/2 -right-4 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
@@ -50,12 +50,12 @@ function MidRightArrow() {
         "--rot-mid": "225deg",
       })}
     >
-      💸
+      {emoji}
     </span>
   );
 }
 
-function BottomRightArrow() {
+function BottomRightArrow({ emoji }: { emoji: string }) {
   return (
     <span
       className="swarm-arrow absolute -bottom-3 -right-2 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
@@ -66,12 +66,12 @@ function BottomRightArrow() {
         "--rot-mid": "270deg",
       })}
     >
-      💸
+      {emoji}
     </span>
   );
 }
 
-function BottomLeftArrow() {
+function BottomLeftArrow({ emoji }: { emoji: string }) {
   return (
     <span
       className="swarm-arrow absolute -bottom-3 -left-2 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
@@ -82,12 +82,12 @@ function BottomLeftArrow() {
         "--rot-mid": "0deg",
       })}
     >
-      💸
+      {emoji}
     </span>
   );
 }
 
-function MidLeftArrow() {
+function MidLeftArrow({ emoji }: { emoji: string }) {
   return (
     <span
       className="swarm-arrow absolute top-1/2 -translate-y-1/2 -left-4 w-4 h-4 text-red-500 opacity-0 pointer-events-none"
@@ -98,36 +98,39 @@ function MidLeftArrow() {
         "--rot-mid": "45deg",
       })}
     >
-      💸
+      {emoji}
     </span>
   );
 }
 
-export default function HeroActions() {
+interface SuperButtonProps {
+  text: string;
+  href: string;
+  emoji: string;
+  className?: string;
+}
+
+export default function SuperButton({
+  text,
+  href,
+  emoji,
+  className,
+}: SuperButtonProps) {
+  const classes =
+    "inline-flex items-center px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-semibold hover:underline underline-offset-7 shadow-md transform transition duration-200 ease-out hover:-translate-y-1 hover:scale-105 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300/40";
+
   return (
-    <div className="mt-6 flex flex-wrap gap-3 items-center">
-      <div className="relative inline-block">
-        <Link
-          href="/projects"
-          className="inline-flex items-center px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-semibold hover:underline underline-offset-7 shadow-md transform transition duration-200 ease-out hover:-translate-y-1 hover:scale-105 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-300/40"
-        >
-          🚀 See Projects
-        </Link>
-
-        <TopLeftArrow />
-        <TopRightArrow />
-        <MidRightArrow />
-        <BottomRightArrow />
-        <BottomLeftArrow />
-        <MidLeftArrow />
-      </div>
-
-      <Link
-        href="/contact"
-        className="inline-flex items-center px-4 py-3 rounded-lg border border-white/20 bg-white/20 text-md font-bold hover:underline underline-offset-7 text-white transform transition duration-180 ease-out hover:-translate-y-1 hover:shadow-md active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-black/10 dark:focus-visible:ring-white/10"
-      >
-        👨‍💻 Contact
+    <div className="relative inline-block">
+      <Link href={href} className={`${classes} ${className || ""}`}>
+        {text}
       </Link>
+
+      <TopLeftArrow emoji={emoji} />
+      <TopRightArrow emoji={emoji} />
+      <MidRightArrow emoji={emoji} />
+      <BottomRightArrow emoji={emoji} />
+      <BottomLeftArrow emoji={emoji} />
+      <MidLeftArrow emoji={emoji} />
     </div>
   );
 }
