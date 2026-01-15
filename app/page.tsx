@@ -1,11 +1,10 @@
-import SuperButton from "@/components/SuperButton";
 import Image from "next/image";
 import React from "react";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col p-4 items-center">
-      <div className="flex flex-col w-full max-w-5xl items-center">
+      <div className="flex flex-col w-full max-w-5xl items-center gap-12">
         {/* Colorful blurred background */}
         <div
           aria-hidden
@@ -79,6 +78,8 @@ export default function Home() {
             </div>
           </button>
         </div>
+
+        <div className="relative flex flex-col gap-6 max-w-140 p-6"></div>
       </div>
     </main>
   );
