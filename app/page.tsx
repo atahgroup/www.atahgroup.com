@@ -6,9 +6,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col p-4 items-center bg-gradient-to-r from-indigo-400/30 via-sky-300/30 to-emerald-300/30">
       <div className="flex flex-col w-full max-w-5xl items-center gap-12">
         <div className="relative flex flex-col gap-6 max-w-140 p-6 sm:border-2 rounded-2xl">
-          <h1 className="text-4xl text-center sm:text-start">
-            Indianapolis Vending Solutions
-          </h1>
+          <h1 className="text-4xl text-center sm:text-start">Atah Group</h1>
           <p className="text-justify sm:text-start">
             We are a vending services provider serving businesses, locations &
             facilities in the Indianapolis, Indiana area.
@@ -16,9 +14,7 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-8">
             <div className="flex flex-col gap-3 items-center text-center">
               <Image
-                src={
-                  "https://indianapolis.vendingexchange.com/assets/img/state-img.png"
-                }
+                src="/assets/toolbox.webp"
                 alt="Toolbox Outline Icon"
                 width={72}
                 height={72}
@@ -32,9 +28,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-3 items-center text-center">
               <Image
-                src={
-                  "https://indianapolis.vendingexchange.com/assets/img/vending2-img.png"
-                }
+                src="/assets/vending.webp"
                 alt="Toolbox Outline Icon"
                 width={72}
                 height={72}
@@ -45,9 +39,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-3 items-center text-center">
               <Image
-                src={
-                  "https://indianapolis.vendingexchange.com/assets/img/service-img.png"
-                }
+                src="/assets/commission.webp"
                 alt="Toolbox Outline Icon"
                 width={72}
                 height={72}
