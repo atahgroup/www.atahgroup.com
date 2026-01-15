@@ -59,6 +59,7 @@ export default function Home() {
             <b>GET A MACHINE</b>
           </RainboxGradientBorderButton>
         </div>
+        <div className="w-32 h-32 bg-white dark:bg-black"> </div>
       </div>
     </main>
   );

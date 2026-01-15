@@ -44,11 +44,13 @@ export const NavBar = () => {
   const applyTheme = (t: "light" | "dark") => {
     const root = document.documentElement;
     if (t === "dark") {
-      root.style.setProperty("--background", "#121212");
+      root.style.setProperty("--background", "#101828");
       root.style.setProperty("--foreground", "#ededed");
+      root.className = "dark";
     } else {
       root.style.setProperty("--background", "#ffffff");
       root.style.setProperty("--foreground", "#171717");
+      root.className = "";
     }
   };
 
