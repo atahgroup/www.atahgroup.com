@@ -1,3 +1,6 @@
+"use client";
+
+import { RainboxGradientBorderButton } from "@/components/RainboxGradientBorderButton";
 import Image from "next/image";
 import React from "react";
 
@@ -52,18 +55,10 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <button className="relative group overflow-hidden rounded-full p-[3px] focus:outline-none">
-            <div className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ff0000_0%,#ff8800_15%,#ffff00_30%,#00ff00_45%,#00ffff_60%,#0000ff_75%,#8800ff_90%,#ff0000_100%)] blur-md"></div>
-
-            <div className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ff0000_0%,#ff8800_15%,#ffff00_30%,#00ff00_45%,#00ffff_60%,#0000ff_75%,#8800ff_90%,#ff0000_100%)]"></div>
-
-            <div className="relative z-10 flex items-center justify-center bg-white px-8 py-3 rounded-full text-black transition-all group-hover:bg-white/80 group-hover:underline underline-offset-4 cursor-pointer">
-              <span className="font-bold tracking-wide">GET A MACHINE</span>
-            </div>
-          </button>
+          <RainboxGradientBorderButton onClick={() => alert()}>
+            <b>GET A MACHINE</b>
+          </RainboxGradientBorderButton>
         </div>
-
-        <div className="relative flex flex-col gap-6 max-w-140 p-6"></div>
       </div>
     </main>
   );
