@@ -12,9 +12,9 @@ export const LoginButton = () => {
   return (
     <button
       onClick={() => login()}
-      className="px-6 py-2 bg-red-800 text-white rounded-md hover:bg-red-900 hover:underline hover:underline-offset-4 "
+      className="px-6 py-2 border border-red-700 text-red-700 rounded-md hover:underline underline-offset-4 transition duration-200"
     >
-      Login
+      Admin Login
     </button>
   );
 };

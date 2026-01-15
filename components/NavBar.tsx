@@ -14,7 +14,7 @@ const NavBarItem = (props: {
   return (
     <Link
       href={props.href}
-      className="w-full text-center py-2 px-6 cursor-pointer text-foreground transition duration-200 hover:underline hover:underline-offset-4 whitespace-nowrap"
+      className="w-full text-center py-2 px-6 cursor-pointer text-foreground transition hover:underline hover:underline-offset-4 whitespace-nowrap"
       onClick={props.onClick}
     >
       {props.label}
@@ -131,7 +131,7 @@ export const NavBar = () => {
         {/* Mobile menu panel */}
         <div
           id="mobile-menu"
-          className={`lg:hidden transition-max-h duration-300 ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
+          className={`lg:hidden transition-max-h ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
             open ? "max-h-screen" : "max-h-0"
           }`}
         >
