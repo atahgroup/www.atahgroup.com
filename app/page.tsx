@@ -3,16 +3,8 @@ import React from "react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col p-4 items-center">
+    <main className="min-h-screen flex flex-col p-4 items-center bg-gradient-to-r from-indigo-400/30 via-sky-300/30 to-emerald-300/30">
       <div className="flex flex-col w-full max-w-5xl items-center gap-12">
-        {/* Colorful blurred background */}
-        <div
-          aria-hidden
-          className="absolute -inset-0 rounded-3xl blur-3xl transform-gpu"
-        >
-          <div className="absolute inset-0 rounded-3xl hidden dark:block bg-gradient-to-r from-indigo-400/30 via-sky-300/30 to-emerald-300/30" />
-        </div>
-
         <div className="relative flex flex-col gap-6 max-w-140 p-6 sm:border-2 rounded-2xl">
           <h1 className="text-4xl text-center sm:text-start">
             Indianapolis Vending Solutions
