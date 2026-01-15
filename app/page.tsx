@@ -85,11 +85,15 @@ const FAQItem = ({
           {isOpen ? "-" : "+"}
         </span>
       </button>
-      {isOpen && (
-        <p className="text-justify mt-2 animate-in fade-in slide-in-from-top-2 duration-200">
-          {answer}
-        </p>
-      )}
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{
+          maxHeight: isOpen ? "500px" : "0px",
+          opacity: isOpen ? 1 : 0,
+        }}
+      >
+        <p className="text-justify mt-2">{answer}</p>
+      </div>
     </div>
   );
 };
