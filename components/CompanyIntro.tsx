@@ -3,6 +3,7 @@
 import { RainboxGradientBorderButton } from "@/components/RainboxGradientBorderButton";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 export const CompanyIntro = () => {
   return (
@@ -53,11 +54,13 @@ export const CompanyIntro = () => {
           </a>
         </div>
       </div>
-      <RainboxGradientBorderButton
-        onClick={() => alert("Not implemented yet!")}
-      >
-        <b>GET A MACHINE</b>
-      </RainboxGradientBorderButton>
+      <div>
+        <Link href="/contact">
+          <RainboxGradientBorderButton>
+            <b>CONTACT US</b>
+          </RainboxGradientBorderButton>
+        </Link>
+      </div>
     </div>
   );
 };
