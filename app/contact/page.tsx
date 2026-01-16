@@ -17,7 +17,7 @@ export default function Contact() {
             <tr>
               <td className="border border-gray-400 px-4 py-2">Wesley Jones</td>
               <td className="border border-gray-400 px-4 py-2">
-                <a href="mailto:wes@atahgroup.com">wes@atahgroup.com</a>
+                <a href="mailto:ceo@atahgroup.com">ceo@atahgroup.com</a>
               </td>
               <td className="border border-gray-400 px-4 py-2">
                 <a href="tel:+15599086563">+1 (559) 908-6563</a>
