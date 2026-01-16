@@ -20,7 +20,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="mt-3 max-w-md text-sm text-foreground/80 text-justify md:text-left">
-              Long live humanity.
+              Long live humanity
             </p>
           </div>
 
@@ -31,7 +31,7 @@ export const Footer = () => {
               </h4>
               <nav className="mt-2 flex flex-col text-sm text-foreground/90 items-center md:items-start">
                 <Link
-                  href="/about"
+                  href="/"
                   className="py-1 hover:underline text-center md:text-left"
                 >
                   About
