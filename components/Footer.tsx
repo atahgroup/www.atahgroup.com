@@ -51,12 +51,6 @@ export const Footer = () => {
               </h4>
               <nav className="mt-2 flex flex-col text-sm text-foreground/90 items-center md:items-start">
                 <Link
-                  href="/legal/terms"
-                  className="py-1 hover:underline text-center md:text-left whitespace-nowrap"
-                >
-                  Terms of Service
-                </Link>
-                <Link
                   href="/legal/privacy"
                   className="py-1 hover:underline text-center md:text-left"
                 >
@@ -77,9 +71,6 @@ export const Footer = () => {
             © {new Date().getFullYear()} Atah Group — All rights reserved.
           </div>
           <div className="flex gap-4">
-            <Link href="/legal/terms" className="hover:underline">
-              Terms
-            </Link>
             <Link href="/legal/privacy" className="hover:underline">
               Privacy
             </Link>
