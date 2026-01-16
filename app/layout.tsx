@@ -8,6 +8,7 @@ import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { CookieConsentComponent } from "@/components/CookieConsent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({
         <Toaster position="bottom-center" reverseOrder={false} />
         <Footer />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? ""} />
+        <CookieConsentComponent />
       </body>
     </html>
   );

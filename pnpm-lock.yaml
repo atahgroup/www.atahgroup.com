@@ -20,6 +20,9 @@ importers:
       react:
         specifier: 19.2.3
         version: 19.2.3
+      react-cookie-consent:
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-dom:
         specifier: 19.2.3
         version: 19.2.3(react@19.2.3)
@@ -1654,6 +1657,13 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  react-cookie-consent@10.0.0:
+    resolution: {integrity: sha512-VHbS1phMZ+r898KH7aJY/CfWKOXsHYr9W7Z+GuksH90K72iY9HJBMMYPcNNo32BwPOQBJV/dj34bPy2oBlfQWA==}
+    engines: {node: '>=20.16'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
 
   react-dom@19.2.3:
     resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
@@ -3685,6 +3695,12 @@ snapshots:
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
+
+  react-cookie-consent@10.0.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      js-cookie: 3.0.5
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   react-dom@19.2.3(react@19.2.3):
     dependencies:
