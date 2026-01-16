@@ -19,7 +19,7 @@ export const Footer = () => {
                 Atah Group
               </span>
             </div>
-            <p className="mt-3 max-w-md text-sm text-foreground/80 text-justify md:text-left">
+            <p className="mt-3 max-w-md text-sm text-foreground/80 text-center md:text-left">
               Long live humanity
             </p>
           </div>
