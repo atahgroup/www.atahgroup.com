@@ -76,7 +76,7 @@ export default function Contact() {
             <div className="flex flex-col gap-6">
               <h2 className="text-2xl font-semibold">Get in Touch</h2>
               <p className="text-gray-700 dark:text-gray-300">
-                Have questions about our vending services? Fill out the form and
+                Have questions about our services? Fill out the form and
                 we&apos;ll get back to you as soon as possible.
               </p>
 
@@ -84,10 +84,10 @@ export default function Contact() {
                 <div>
                   <h3 className="font-semibold mb-2">Email</h3>
                   <a
-                    href="mailto:ceo@atahgroup.com"
+                    href="mailto:contact@atahgroup.com"
                     className="text-indigo-600 dark:text-indigo-400 hover:underline"
                   >
-                    ceo@atahgroup.com
+                    contact@atahgroup.com
                   </a>
                 </div>
 
@@ -115,7 +115,6 @@ export default function Contact() {
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600"
                 />
               </div>
-
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="font-semibold">
                   Email <span className="text-red-500">*</span>
@@ -130,7 +129,6 @@ export default function Contact() {
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600"
                 />
               </div>
-
               <div className="flex flex-col gap-2">
                 <label htmlFor="phone" className="font-semibold">
                   Phone
@@ -144,7 +142,6 @@ export default function Contact() {
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600"
                 />
               </div>
-
               <div className="flex flex-col gap-2">
                 <label htmlFor="company" className="font-semibold">
                   Company/Organization
@@ -158,7 +155,6 @@ export default function Contact() {
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600"
                 />
               </div>
-
               <div className="flex flex-col gap-2">
                 <label htmlFor="message" className="font-semibold">
                   Message <span className="text-red-500">*</span>
@@ -172,6 +168,33 @@ export default function Contact() {
                   rows={5}
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 resize-none"
                 />
+              </div>
+
+              <div className="flex items-start gap-2">
+                <input
+                  type="checkbox"
+                  id="consent"
+                  required
+                  className="mt-1 mr-2"
+                />
+                <label
+                  htmlFor="consent"
+                  className="text-sm cursor-pointer select-none"
+                >
+                  By hitting &quot;Send Message&quot;, you agree to let us
+                  contact you using the above provided information. Message and
+                  data rates may apply. You can unsubscribe from these
+                  communications at any time. For more information, check out
+                  our{" "}
+                  <a
+                    href="/legal/privacy"
+                    target="_blank"
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    Privacy Policy
+                  </a>
+                  .
+                </label>
               </div>
 
               <button
