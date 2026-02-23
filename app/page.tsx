@@ -1,6 +1,7 @@
 "use client";
 
 import { FAQ_ITEMS } from "@/constants/faq";
+import { LISTING_ITEMS, ListingItem } from "@/constants/listing";
 import Image from "next/image";
 import React from "react";
 
@@ -45,6 +46,57 @@ const CompanyInfo = () => {
             ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa
             qui duis non minim non reprehenderit amet.
           </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ListingItemView = (props: ListingItem) => {
+  return (
+    <div className="flex flex-col gap-2 border border-foreground/30 rounded-lg p-4 w-full lg:w-[400px]">
+      <Image
+        src={props.imageUrl}
+        alt={`Image of listing at ${props.address.street}`}
+        width={400}
+        height={300}
+        className="object-cover rounded-lg w-full h-48"
+      />
+      <h3 className="text-2xl font-semibold">
+        Village Apartments Of {props.address.city}
+      </h3>
+      <div className="flex flex-col gap-1">
+        <h3 className="text-xl font-semibold">{props.address.street}</h3>
+        <p>
+          {`${props.bedrooms} bed / ${props.bathrooms} bath / ${props.squareFeet} sqft`}
+        </p>
+        <div className="flex items-center gap-2">
+          <p className="font-bold">{`$${props.monthlyRent}/month rent`}</p>
+          <p className="text-sm text-foreground/70">{`$${props.securityDeposit} security deposit`}</p>
+        </div>
+        {props.petsAllowed ? (
+          <p className="text-green-600 font-semibold">Pets Allowed</p>
+        ) : (
+          <p className="text-red-600 font-semibold">No Pets</p>
+        )}
+        <p>{`Minimum required total gross income: $${props.monthlyRent * props.requiredIncomeMultiplier}/month`}</p>
+      </div>
+    </div>
+  );
+};
+
+const AvailableListing = () => {
+  return (
+    <div className="max-w-5xl px-10 lg:px-0">
+      <div className="max-w-5xl w-full flex flex-col gap-6">
+        <h2 className="text-3xl text-center sm:text-start">
+          Available Listings
+        </h2>
+
+        <div className="w-full flex flex-wrap gap-10 justify-center sm:justify-start max-h-[600px] overflow-y-auto">
+          {LISTING_ITEMS.map((item, index) => (
+            <ListingItemView key={index} {...item} />
+          ))}
         </div>
       </div>
     </div>
@@ -107,7 +159,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col items-center gap-8 pb-10">
       <Banner />
       <CompanyInfo />
-
+      <AvailableListing />
       <FAQ />
     </main>
   );
