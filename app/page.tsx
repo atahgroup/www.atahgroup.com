@@ -89,7 +89,7 @@ const FAQItem = ({
 const FAQ = () => {
   return (
     <div className="max-w-5xl px-10 lg:px-0">
-      <div className="max-w-5xl px-10 lg:px-0 w-full flex flex-col gap-6 p-6 sm:border-1 border-foreground/30 rounded-lg">
+      <div className="max-w-5xl px-0 sm:px-10 w-full flex flex-col gap-6 p-6 sm:border-1 border-foreground/30 rounded-lg">
         <h2 className="text-3xl text-center sm:text-start">
           Frequently Asked Questions
         </h2>
