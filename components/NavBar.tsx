@@ -57,7 +57,7 @@ export const NavBar = () => {
       root.style.setProperty("--foreground", "#ededed");
       root.className = "dark";
     } else {
-      root.style.setProperty("--background", "#ffffff");
+      root.style.setProperty("--background", "#dcd9d0");
       root.style.setProperty("--foreground", "#171717");
       root.className = "";
     }
