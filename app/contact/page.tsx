@@ -14,7 +14,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({
       ...formData,
@@ -44,7 +44,7 @@ export default function Contact() {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (!response.ok) {
         console.error("Failed to submit form", response);
@@ -67,7 +67,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col p-4 items-center bg-gradient-to-r from-indigo-400/30 via-sky-300/30 to-emerald-300/30">
+    <main className="min-h-screen flex flex-col p-4 items-center">
       <div className="flex flex-col w-full max-w-140 items-center gap-12 py-8">
         <div className="w-full flex flex-col gap-8 p-6 sm:border-2 rounded-2xl bg-white/50 dark:bg-gray-800/50">
           <h1 className="text-4xl font-bold text-center">Contact Us</h1>
