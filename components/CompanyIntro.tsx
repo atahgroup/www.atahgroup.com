@@ -8,10 +8,10 @@ import Link from "next/link";
 export const CompanyIntro = () => {
   return (
     <div className="w-full flex flex-col gap-6 p-6 sm:border-2 rounded-2xl">
-      <h1 className="text-4xl text-center sm:text-start">Atah Group</h1>
+      <h1 className="text-4xl text-center sm:text-start">Lorem Ipsum</h1>
       <p className="text-justify sm:text-start">
-        We are a vending services provider serving businesses, locations &
-        facilities in the Indianapolis, Indiana area.
+        Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse
+        veniam do ut et sint ut cupidatat sunt aliquip.
       </p>
       <div className="grid grid-cols-3 gap-8">
         <div className="flex flex-col gap-3 items-center text-center">
@@ -22,10 +22,7 @@ export const CompanyIntro = () => {
             height={72}
           />
           <a className="text-sm sm:text-base">
-            Machines Provided At{" "}
-            <b>
-              <u>Zero Cost To You</u>
-            </b>
+            Est tempor ea quis ea sunt quis.
           </a>
         </div>
         <div className="flex flex-col gap-3 items-center text-center">
@@ -36,7 +33,7 @@ export const CompanyIntro = () => {
             height={72}
           />
           <a className="text-sm sm:text-base">
-            Competitively Priced Snacks & Beverages
+            Est tempor ea quis ea sunt quis.
           </a>
         </div>
         <div className="flex flex-col gap-3 items-center text-center">
@@ -47,10 +44,7 @@ export const CompanyIntro = () => {
             height={72}
           />
           <a className="text-sm sm:text-base">
-            <b>
-              <u>Commissions Available</u>
-            </b>{" "}
-            to Qualified Locations
+            Est tempor ea quis ea sunt quis.
           </a>
         </div>
       </div>

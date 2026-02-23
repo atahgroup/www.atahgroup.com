@@ -5,33 +5,33 @@ type FAQItem = {
 
 export const FAQ_ITEMS: FAQItem[] = [
   {
-    question: "What areas do you serve?",
+    question: "Est tempor ea quis ea sunt quis?",
     answer:
-      "We primarily serve businesses and facilities in the Indianapolis, Indiana area and its surrounding communities.",
+      "Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse veniam do ut et sint ut cupidatat sunt aliquip. Est tempor ea quis ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa qui duis non minim non reprehenderit amet.",
   },
   {
-    question: "How can I get a vending machine for my business?",
+    question: "Est tempor ea quis ea sunt quis?",
     answer:
-      "Getting a vending machine for your business is easy! Simply contact us through our website or give us a call, and our team will guide you through the process of selecting the right vending solution for your needs.",
+      "Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse veniam do ut et sint ut cupidatat sunt aliquip. Est tempor ea quis ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa qui duis non minim non reprehenderit amet.",
   },
   {
-    question: "What types of vending machines do you provide?",
+    question: "Est tempor ea quis ea sunt quis?",
     answer:
-      "We offer a variety of vending machines including snack machines, beverage machines, and combo machines that offer both snacks and drinks.",
+      "Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse veniam do ut et sint ut cupidatat sunt aliquip. Est tempor ea quis ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa qui duis non minim non reprehenderit amet.",
   },
   {
-    question: "How often are the machines restocked?",
+    question: "Est tempor ea quis ea sunt quis?",
     answer:
-      "Our team receives daily, automatic, remote machine status updates and restocks the machines based on usage patterns to ensure they are always well-stocked with fresh products.",
+      "Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse veniam do ut et sint ut cupidatat sunt aliquip. Est tempor ea quis ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa qui duis non minim non reprehenderit amet.",
   },
   {
-    question: "Do you offer healthy snack options?",
+    question: "Est tempor ea quis ea sunt quis?",
     answer:
-      "Yes absolutely! We understand the importance of healthy eating and offer a range of nutritious snack options in our vending machines. If you have specific snack requests, please let us know. We are happy to accommodate requests whenever possible.",
+      "Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse veniam do ut et sint ut cupidatat sunt aliquip. Est tempor ea quis ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa qui duis non minim non reprehenderit amet.",
   },
   {
-    question: "What is the cost of your vending services?",
+    question: "Est tempor ea quis ea sunt quis?",
     answer:
-      "We provide vending machines at zero cost to you. Our snacks and beverages are competitively priced, and we also offer commissions to qualified locations.",
+      "Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse veniam do ut et sint ut cupidatat sunt aliquip. Est tempor ea quis ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa qui duis non minim non reprehenderit amet.",
   },
 ];
