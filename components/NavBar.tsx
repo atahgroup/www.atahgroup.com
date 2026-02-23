@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
-import { LoginButton } from "./LoginButton";
 
 const NavBarItem = (props: {
   label: string;
@@ -104,10 +103,6 @@ export const NavBar = () => {
                 <FiMoon className="h-5 w-5 text-foreground" />
               )}
             </button>
-          </div>
-
-          <div className="flex justify-end w-full lg:w-auto mr-2">
-            <LoginButton />
           </div>
 
           {/* Mobile hamburger */}
