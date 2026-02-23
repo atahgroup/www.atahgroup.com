@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
 
@@ -10,10 +11,19 @@ const NavBarItem = (props: {
   href: string;
   onClick?: () => void;
 }) => {
+  const pathname = usePathname();
+  const isActive =
+    props.href === "/"
+      ? pathname === "/"
+      : pathname === props.href || pathname.startsWith(`${props.href}/`);
+
   return (
     <Link
       href={props.href}
-      className="w-full text-center py-2 px-6 cursor-pointer text-foreground transition hover:underline hover:underline-offset-4 whitespace-nowrap"
+      aria-current={isActive ? "page" : undefined}
+      className={`w-full text-center py-2 px-6 cursor-pointer text-foreground transition underline-offset-6 whitespace-nowrap ${
+        isActive ? "underline" : "hover:underline"
+      }`}
       onClick={props.onClick}
     >
       {props.label}
@@ -71,7 +81,7 @@ export const NavBar = () => {
   return (
     <header className="flex justify-between w-full border-b border-foreground/30 bg-background">
       <div className="w-full">
-        <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-2">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
           <div className="flex items-center select-none space-x-2">
             <Image
               src="/assets/logo.png"
@@ -84,12 +94,17 @@ export const NavBar = () => {
             </span>
           </div>
           {/* Desktop nav */}
-          <nav className="hidden lg:flex lg:items-center lg:space-x-3">
+          <nav className="hidden xl:flex xl:items-center xl:space-x-3">
             <NavBarItem label="Home" href="/" />
-            <NavBarItem label="Contact Us" href="/contact" />
+            <NavBarItem label="About" href="/about" />
+            <NavBarItem label="Our Team" href="/team" />
+            <NavBarItem label="Resident Portal" href="/portal" />
+            <NavBarItem label="Careers" href="/careers" />
+            <NavBarItem label="Contact" href="/contact" />
+            <NavBarItem label="Privacy Policy" href="/legal/privacy" />
           </nav>
           {/* Theme toggle */}
-          <div className="hidden lg:flex lg:items-center lg:ml-2">
+          <div className="hidden xl:flex xl:items-center xl:ml-2">
             <button
               onClick={toggleTheme}
               aria-label={`Switch to ${
@@ -106,7 +121,7 @@ export const NavBar = () => {
           </div>
 
           {/* Mobile hamburger */}
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <button
               aria-controls="mobile-menu"
               aria-expanded={open}
@@ -127,7 +142,7 @@ export const NavBar = () => {
         {/* Mobile menu panel */}
         <div
           id="mobile-menu"
-          className={`lg:hidden transition-max-h ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
+          className={`xl:hidden transition-max-h ease-in-out overflow-hidden bg-background/95 dark:bg-background/90 ${
             open ? "max-h-screen" : "max-h-0"
           }`}
         >
@@ -154,7 +169,20 @@ export const NavBar = () => {
 
             <div className="flex flex-col items-center w-full py-2 space-y-2">
               <NavBarItem label="Home" href="/" onClick={close} />
-              <NavBarItem label="Contact Us" href="/contact" onClick={close} />
+              <NavBarItem label="About" href="/about" onClick={close} />
+              <NavBarItem label="Our Team" href="/team" onClick={close} />
+              <NavBarItem
+                label="Resident Portal"
+                href="/portal"
+                onClick={close}
+              />
+              <NavBarItem label="Careers" href="/careers" onClick={close} />
+              <NavBarItem label="Contact" href="/contact" onClick={close} />
+              <NavBarItem
+                label="Privacy Policy"
+                href="/legal/privacy"
+                onClick={close}
+              />
             </div>
           </div>
         </div>
