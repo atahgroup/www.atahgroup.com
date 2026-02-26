@@ -77,7 +77,7 @@ const ListingItemView = (props: ListingItem) => {
           <p className="text-foreground/70">{`$${props.securityDeposit} deposit`}</p>
         </div>
         {props.petsAllowed ? (
-          <p className="text-green-600 font-semibold">Pets Allowed</p>
+          <p className="text-green-700 font-semibold">Pets Allowed</p>
         ) : (
           <p className="text-black font-semibold">No Pets</p>
         )}
