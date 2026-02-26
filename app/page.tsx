@@ -3,6 +3,7 @@
 import { FAQ_ITEMS } from "@/constants/faq";
 import { LISTING_ITEMS, ListingItem } from "@/constants/listing";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Banner = () => {
@@ -70,16 +71,22 @@ const ListingItemView = (props: ListingItem) => {
         <p>
           {`${props.bedrooms} bed / ${props.bathrooms} bath / ${props.squareFeet} sqft`}
         </p>
-        <div className="flex items-center gap-2">
-          <p className="font-bold">{`$${props.monthlyRent}/month rent`}</p>
-          <p className="text-sm text-foreground/70">{`$${props.securityDeposit} security deposit`}</p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="font-bold">{`$${props.monthlyRent}/month`}</p>
+          <p className="whitespace-nowrap text-foreground/70">{`${props.requiredIncomeMultiplier}x income`}</p>
+          <p className="text-foreground/70">{`$${props.securityDeposit} deposit`}</p>
         </div>
         {props.petsAllowed ? (
           <p className="text-green-600 font-semibold">Pets Allowed</p>
         ) : (
-          <p className="text-red-600 font-semibold">No Pets</p>
+          <p className="text-black font-semibold">No Pets</p>
         )}
-        <p>{`Minimum required total gross income: $${props.monthlyRent * props.requiredIncomeMultiplier}/month`}</p>
+
+        <Link href={`/listing-details?id=${props.id}`} className="w-full">
+          <button className="w-full mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
+            View Details
+          </button>
+        </Link>
       </div>
     </div>
   );
@@ -93,7 +100,7 @@ const AvailableListing = () => {
           Available Listings
         </h2>
 
-        <div className="w-full flex flex-wrap gap-10 justify-center sm:justify-start max-h-[600px] overflow-y-auto">
+        <div className="w-full flex flex-wrap gap-10 justify-between max-h-[600px] overflow-y-auto">
           {LISTING_ITEMS.map((item, index) => (
             <ListingItemView key={index} {...item} />
           ))}
