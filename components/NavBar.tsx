@@ -88,6 +88,7 @@ export const NavBar = () => {
               alt="Atah Group Logo"
               width={40}
               height={40}
+              className="w-[40px] h-[40px]"
             />
             <span className="font-bold text-xl md:text-2xl text-foreground whitespace-nowrap">
               Atah
