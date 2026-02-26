@@ -22,7 +22,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Atah Group",
-  description: "",
+  description:
+    "Atah Group is committed to providing affordable multi-family housing solutions. Explore our available listings and experience the Atah difference today.",
 };
 
 export default function RootLayout({
