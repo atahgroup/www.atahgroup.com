@@ -77,13 +77,13 @@ const ListingItemView = (props: ListingItem) => {
           <p className="text-foreground/70">{`$${props.securityDeposit} deposit`}</p>
         </div>
         {props.petsAllowed ? (
-          <p className="text-green-700 font-semibold">Pets Allowed</p>
+          <p className="font-semibold">Pets Allowed</p>
         ) : (
-          <p className="text-black font-semibold">No Pets</p>
+          <p className="font-semibold">No Pets</p>
         )}
 
         <Link href={`/listing-details?id=${props.id}`} className="w-full">
-          <button className="w-full mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
+          <button className="w-full mt-2 px-4 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
             View Details
           </button>
         </Link>
