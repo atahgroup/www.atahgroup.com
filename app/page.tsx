@@ -96,18 +96,43 @@ const ListingItemView = (props: ListingItem) => {
 };
 
 const AvailableListing = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <div className="max-w-5xl px-10 lg:px-0">
-      <div className="max-w-5xl w-full flex flex-col gap-6">
+    <div className="max-w-5xl px-10 lg:px-0 w-full">
+      <div className="max-w-5xl w-full flex flex-col gap-6 items-center ">
         <h2 className="text-3xl text-center sm:text-start">
           Available Listings
         </h2>
+        <button
+          onClick={() => setIsOpen(true)}
+          className="w-full px-6 py-5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors text-2xl"
+        >
+          See Listings (+{LISTING_ITEMS.length})
+        </button>
 
-        <div className="w-full flex flex-wrap gap-10 justify-between max-h-[600px] overflow-y-auto">
-          {LISTING_ITEMS.map((item, index) => (
-            <ListingItemView key={index} {...item} />
-          ))}
-        </div>
+        {isOpen && (
+          <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+            <div className="relative top-8 w-full max-w-5xl bg-background border border-foreground/30 rounded-lg p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-semibold">Available Listings</h3>
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close listings popup"
+                  className="text-2xl leading-none text-foreground/80 hover:text-foreground"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="w-full flex flex-wrap gap-10 justify-between max-h-[600px] overflow-y-auto pr-1">
+                {LISTING_ITEMS.map((item, index) => (
+                  <ListingItemView key={index} {...item} />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
