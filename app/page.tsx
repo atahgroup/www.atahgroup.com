@@ -35,17 +35,20 @@ const CompanyInfo = () => {
           alt="Family renting apartment image"
           width={612}
           height={408}
-          className="object-cover h-60 w-full ml-auto rounded-lg rounded-bl-none rounded-br-none md:rounded-bl-lg md:rounded-tr-none md:rounded-br-none"
+          className="object-cover h-74 w-full ml-auto rounded-lg rounded-bl-none rounded-br-none md:rounded-bl-lg md:rounded-tr-none md:rounded-br-none"
         />
         <div className="col-span-2 p-6 border border-foreground/30 rounded-lg rounded-tl-none rounded-tr-none md:rounded-tr-lg md:rounded-tl-none md:rounded-bl-none">
           <h2 className="text-2xl font-bold mb-4">
             Experience the Atah Difference
           </h2>
           <p className="text-justify">
-            Lorem ipsum dolor sit amet elit ipsum consectetur ullamco magna esse
-            veniam do ut et sint ut cupidatat sunt aliquip. Est tempor ea quis
-            ea sunt quis officia eu incididunt minim eu voluptate in Lorem culpa
-            qui duis non minim non reprehenderit amet.
+            At Atah Group, we believe that a high-quality home is the foundation
+            for a better life. We specialize in managing affordable multi-family
+            communities that prioritize people over properties. By combining
+            modern management technology with a deeply human approach, we create
+            living spaces where residents don’t just stay—they thrive. From
+            transparent communication to rapid maintenance support, we are
+            redefining what it means to be a resident.
           </p>
         </div>
       </div>
